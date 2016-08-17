@@ -22,13 +22,13 @@ public class IDManager {
         if(hasID() == false){
             newID();
         }else{
-            MainActivity.getLogger().newLine("id : "+preferences.getInt("id", 0));
+            MainActivity.getLogger().newLine("Votre id : "+preferences.getInt("id", 0));
         }
     }
 
     private boolean hasID(){
         if (preferences.getInt("id", 0) == 0){
-            MainActivity.getLogger().newLine("L'app n'as pas encore d'id");
+            MainActivity.getLogger().newLine("Aucun id defini");
             return false;
         }
         return true;
@@ -44,7 +44,7 @@ public class IDManager {
 
         editor.commit();
 
-        MainActivity.getLogger().newLine("Nouvelle id : "+ preferences.getInt("id", 0));
+        MainActivity.getLogger().newLine("Nouvel id : "+ preferences.getInt("id", 0));
     }
 
     public int getId() {return preferences.getInt("id", 0);}
