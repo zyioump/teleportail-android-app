@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
     private static Logger log;
     private static BluetoothManager bluetoothManager;
     private static BluetoothAdapter bluetoothAdapter;
+    private static IDManager idManager;
     private Listener listener;
 
     public static Logger getLogger() {return log;}
     public static BluetoothAdapter getBluetoothAdapter() {return  bluetoothAdapter;}
     public static BluetoothManager getBluetoothManager() {return bluetoothManager;}
+    public static IDManager getIdManager() {return idManager;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         bluetoothManager = new BluetoothManager();
 
-        listener = new Listener((Button) findViewById(R.id.bCo), (Button) findViewById(R.id.bO), (TextView) findViewById(R.id.nomBT));   //Démarrage des listeners
+        idManager = new IDManager(this);
 
-
+        listener = new Listener((Button) findViewById(R.id.bCo), (TextView) findViewById(R.id.nomBT));   //Démarrage des listeners
 
         /*log = (TextView) findViewById(R.id.log);
 
