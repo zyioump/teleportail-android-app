@@ -28,20 +28,20 @@ public class Listener {
                 MainActivity.getLogger().clear();
 
                 if (bluetoothAdapter == null)
-                    MainActivity.getLogger().newLine("Votre Téléphone n'a pas de Bluetooth");      //Si il y a pas de BT
+                    MainActivity.getLogger().newLine("Votre Téléphone n'est pas équipé du Bluetooth");      //Si il y a pas de BT
                 else {                                                                                                       //Si il y en a
                     MainActivity.getLogger().newLine("Portail : " + portailNom.getText().toString());
                     BluetoothDevice device = MainActivity.getBluetoothManager().getPortail(portailNom.getText().toString());
 
                     if (device != null) { //portail déjà appairé
-                        MainActivity.getLogger().newLine("Le portail est appairés");
+                        MainActivity.getLogger().newLine("Le portail est déjà appairé");
 
                         if (MainActivity.getBluetoothManager().connectToADevice(device) == true) {                            //On essai de se connecté
                             MainActivity.getBluetoothManager().sendMessage(MainActivity.getIdManager().getId()+"o.");            //Si on réussi
                             MainActivity.getBluetoothManager().cancelConnection();
                         }
                     } else {
-                        MainActivity.getLogger().newLine("Le portail n'est pas appairé");
+                        MainActivity.getLogger().newLine("Le portail n'est pas encore appairé");
                     }
                 }
 
