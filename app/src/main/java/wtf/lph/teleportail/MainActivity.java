@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
+        if(bluetoothAdapter.isEnabled()){
+            bluetoothAdapter.enable();
+        }
+
         bluetoothManager = new BluetoothManager();
 
         idManager = new IDManager(this);
