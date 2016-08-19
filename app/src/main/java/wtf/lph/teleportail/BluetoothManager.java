@@ -9,8 +9,6 @@ import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Set;
 
-import wtf.lph.teleportail.thread.ConnectThread;
-
 /**
  * Created by simon on 15/08/16.
  */
@@ -42,10 +40,6 @@ public class BluetoothManager {
     }
 
     public boolean connectToADevice(BluetoothDevice device){
-        //ConnectThread thread = new ConnectThread(device);
-        //thread.start();
-
-
         try{
             socket = device.createInsecureRfcommSocketToServiceRecord(device.getUuids()[0].getUuid());
             socket.connect();
@@ -85,6 +79,4 @@ public class BluetoothManager {
             e.printStackTrace();
         }
     }
-
-    public boolean getConnected(){return connected;}
 }
