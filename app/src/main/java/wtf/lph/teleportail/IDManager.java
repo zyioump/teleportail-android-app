@@ -36,7 +36,7 @@ public class IDManager {
 
     public void newID(){
         Random random = new Random();
-        id = 100 + random.nextInt(999-100);
+        id = 100 + random.nextInt(65535-100);
 
         SharedPreferences.Editor editor = preferences.edit();
 
