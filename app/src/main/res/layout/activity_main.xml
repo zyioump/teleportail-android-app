@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nomBT"
-        android:text="HC-05"
+        android:text="214jj"
         android:textColor="#e0e0e0"
         android:singleLine="false"
         android:textSize="30dp"
