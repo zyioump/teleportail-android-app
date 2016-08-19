@@ -6,9 +6,10 @@ import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.Iterator;
 import java.util.Set;
+
+import wtf.lph.teleportail.thread.ConnectThread;
 
 /**
  * Created by simon on 15/08/16.
@@ -17,7 +18,6 @@ public class BluetoothManager {
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothSocket socket;
     private OutputStream    outputStream;
-    private OutputStreamWriter outputStreamWriter;
     private boolean connected;
 
     public BluetoothManager(){
@@ -42,8 +42,12 @@ public class BluetoothManager {
     }
 
     public boolean connectToADevice(BluetoothDevice device){
+        //ConnectThread thread = new ConnectThread(device);
+        //thread.start();
+
+
         try{
-            socket = device.createRfcommSocketToServiceRecord(device.getUuids()[0].getUuid());
+            socket = device.createInsecureRfcommSocketToServiceRecord(device.getUuids()[0].getUuid());
             socket.connect();
 
             MainActivity.getLogger().newLine("Connecté !");
@@ -60,10 +64,9 @@ public class BluetoothManager {
     public void sendMessage(String msg){
         try {
             outputStream = socket.getOutputStream();
-            outputStreamWriter = new OutputStreamWriter(outputStream);
 
-            outputStreamWriter.write(msg);
-            outputStreamWriter.flush();
+            outputStream.write(msg.getBytes());
+            outputStream.flush();
 
             MainActivity.getLogger().newLine("Message envoyé "+msg);
         }catch (IOException e){
@@ -73,7 +76,6 @@ public class BluetoothManager {
 
     public void cancelConnection(){
         try {
-            outputStreamWriter.close();
             outputStream.close();
             socket.close();
             connected = false;
