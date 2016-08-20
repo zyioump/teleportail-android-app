@@ -74,6 +74,9 @@ public class BluetoothManager {
             socket.close();
             connected = false;
 
+            bluetoothAdapter.disable();
+            bluetoothAdapter.enable();
+
             MainActivity.getLogger().newLine("Connexion achevée");
         }catch (IOException e){
             e.printStackTrace();
