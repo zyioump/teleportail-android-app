@@ -36,10 +36,14 @@ public class Listener {
                     if (device != null) { //portail déjà appairé
                         MainActivity.getLogger().newLine("Le portail est déjà appairé");
 
-                        if (MainActivity.getBluetoothManager().connectToADevice(device) == true) {                            //On essai de se connecté
-                            MainActivity.getBluetoothManager().sendMessage(MainActivity.getIdManager().getId()+"o.");            //Si on réussi
+                        /*if (MainActivity.getBluetoothManager().connectToADevice(device) == true) {                            //On essai de se connecté
+                            MainActivity.getBluetoothManager().sendMessage(MainActivity.getIdManager().getId()+"o.\n");            //Si on réussi
                             MainActivity.getBluetoothManager().cancelConnection();
-                        }
+                        }*/
+
+                        Thread connectThread = new ConnectThread(device);
+                        connectThread.start();
+
                     } else {
                         MainActivity.getLogger().newLine("Le portail n'est pas encore appairé");
                     }

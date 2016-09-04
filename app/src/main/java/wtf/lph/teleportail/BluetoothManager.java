@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class BluetoothManager {
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothSocket socket;
     private OutputStream    outputStream;
+    private InputStream     inputStream;
     private boolean connected;
 
     public BluetoothManager(){
@@ -62,6 +64,8 @@ public class BluetoothManager {
             outputStream.write(msg.getBytes());
             outputStream.flush();
 
+            MainActivity.getLogger().newLine(""+inputStream.available());
+
             MainActivity.getLogger().newLine("Message envoyé "+msg);
         }catch (IOException e){
             e.printStackTrace();
@@ -70,12 +74,10 @@ public class BluetoothManager {
 
     public void cancelConnection(){
         try {
-            outputStream.close();
+            //outputStream.flush();
+            //outputStream.close();
             socket.close();
             connected = false;
-
-            bluetoothAdapter.disable();
-            bluetoothAdapter.enable();
 
             MainActivity.getLogger().newLine("Connexion achevée");
         }catch (IOException e){
