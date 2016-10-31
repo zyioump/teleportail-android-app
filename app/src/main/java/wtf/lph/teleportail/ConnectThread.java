@@ -13,7 +13,7 @@ public class ConnectThread extends Thread implements Runnable{
     private BluetoothDevice device;
     private BluetoothSocket socket;
     private OutputStream outputStream;
-    private String msg = MainActivity.getIdManager().getId()+"o.\n";
+    private String msg = MainActivity.getIdManager().getId()+"o.";
 
     public ConnectThread(BluetoothDevice device){
         this.device = device;
@@ -22,10 +22,12 @@ public class ConnectThread extends Thread implements Runnable{
         try{
             socket = device.createInsecureRfcommSocketToServiceRecord(device.getUuids()[0].getUuid());
             socket.connect();
+            //MainActivity.getLogger().newLine("Connecté !!");
 
             outputStream = socket.getOutputStream();
 
             outputStream.write(msg.getBytes());
+            //MainActivity.getLogger().newLine("Message envoyé !");
 
             try {
                 Thread.sleep(500);

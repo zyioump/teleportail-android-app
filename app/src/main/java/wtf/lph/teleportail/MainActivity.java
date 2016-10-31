@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         listener = new Listener((Button) findViewById(R.id.bCo), (TextView) findViewById(R.id.nomBT));   //Démarrage des listeners
 
+
+
         /*log = (TextView) findViewById(R.id.log);
 
         final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter(); //on récupère l'adaptateur BT
